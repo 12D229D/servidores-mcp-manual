@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual y Guía de Servidores MCP (Model Context Protocol)</title>
+    <meta name="description" content="Guía interactiva SPA para entender y construir servidores MCP con tecnologías web nativas.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="brand">
+                <div class="brand-icon">MCP</div>
+                <div class="brand-text">
+                    <h1>Servidores MCP</h1>
+                    <span>Manual HTML5 & Model Context Protocol</span>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" placeholder="Buscar en el manual...">
+            </div>
+
+            <!-- Reading Progress -->
+            <div class="progress-card">
+                <div class="progress-header">
+                    <span>Progreso del Manual</span>
+                    <span id="progress-val">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="progress-fill" class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="sidebar-nav">
+            <div class="nav-group">
+                <div class="nav-group-title">Introducción</div>
+                <a class="nav-item active" data-target="inicio">
+                    <span>🚀</span>
+                    <span class="nav-text">Inicio y Resumen</span>
+                    <span class="badge">01</span>
+                </a>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group-title">Fundamentos</div>
+                <a class="nav-item" data-target="arquitectura">
+                    <span>🏗️</span>
+                    <span class="nav-text">Arquitectura MCP</span>
+                    <span class="badge">02</span>
+                </a>
+                <a class="nav-item" data-target="transporte">
+                    <span>🚆</span>
+                    <span class="nav-text">Transporte</span>
+                    <span class="badge">03</span>
+                </a>
+                <a class="nav-item" data-target="ciclo-vida">
+                    <span>🔄</span>
+                    <span class="nav-text">Ciclo de Vida</span>
+                    <span class="badge">04</span>
+                </a>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group-title">Primitivos</div>
+                <a class="nav-item" data-target="primitivos">
+                    <span>🔧</span>
+                    <span class="nav-text">Tools, Resources & Prompts</span>
+                    <span class="badge">05</span>
+                </a>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group-title">Práctica</div>
+                <a class="nav-item" data-target="servidor">
+                    <span>🖥️</span>
+                    <span class="nav-text">Construir un Servidor MCP</span>
+                    <span class="badge">06</span>
+                </a>
+                <a class="nav-item" data-target="cliente">
+                    <span>🤝</span>
+                    <span class="nav-text">Consumir un Servidor MCP</span>
+                    <span class="badge">07</span>
+                </a>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group-title">Demo Interactiva</div>
+                <a class="nav-item" data-target="demo">
+                    <span>🎮</span>
+                    <span class="nav-text">MCP Playground</span>
+                    <span class="badge">WIZARD</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <button id="theme-toggle-btn" class="theme-toggle-btn">
+                <span id="theme-icon">🌙</span>
+                <span id="theme-text">Modo Oscuro</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <button id="mobile-toggle-btn" class="mobile-toggle" aria-label="Abrir menú">☰</button>
+            <div class="header-breadcrumbs">
+                <span>Manual MCP</span>
+                <span>/</span>
+                <span id="current-crumb" class="active-crumb">Inicio y Resumen</span>
+            </div>
+            <div class="header-actions">
+                <span class="header-tag">HTML5 / JSON-RPC 2.0 / MCP</span>
+            </div>
+        </header>
+
+        <main class="content-body">
+
+            <!-- ================= SECCIÓN: INICIO ================= -->
+            <section id="inicio" class="doc-section active">
+                <div class="section-header">
+                    <span class="section-tag">Bienvenido</span>
+                    <h1 class="section-title">Manual y Guía de Servidores MCP</h1>
+                    <p class="section-description">
+                        Una referencia completa, interactiva y estructurada para entender, construir y consumir servidores MCP (Model Context Protocol) con tecnologías web nativas.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>🎯 Objetivo de este Manual</h2>
+                    <p>
+                        Esta guía está diseñada tanto para desarrolladores que quieren integrar MCP en sus aplicaciones como para ingenieros que necesitan architectar sistemas distribuidos con hosts, clients y servers MCP. Todo el contenido está pensado para correr 100% en el cliente, sin exponer secretos.
+                    </p>
+
+                    <div class="cards-grid">
+                        <div class="card">
+                            <span class="card-icon">🏗️</span>
+                            <h3 class="card-title">Arquitectura MCP</h3>
+                            <p class="card-desc">Hosts, clients, servers; JSON-RPC 2.0; roles y responsabilidades.</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🚆</span>
+                            <h3 class="card-title">Transporte</h3>
+                            <p class="card-desc">stdio, SSE (HTTP+POST deprecated), Streamable HTTP; cuándo usar cada uno.</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🔄</span>
+                            <h3 class="card-title">Ciclo de Vida</h3>
+                            <p class="card-desc">initialize → initialized → operation (request/response, notif., sampling) → exit.</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🎮</span>
+                            <h3 class="card-title">MCP Playground</h3>
+                            <p class="card-desc">Demo interactiva que simula una conversación JSON-RPC con un servidor MCP mock.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout info">
+                    <div class="callout-icon">💡</div>
+                    <div class="callout-content">
+                        <h4>Sugerencia de navegación</h4>
+                        <p>Usa el menú lateral o la búsqueda en tiempo real. Marca cada capítulo como completado para medir tu avance. El progreso y el tema se guardan en tu navegador (localStorage).</p>
+                    </div>
+                </div>
+
+                <div class="callout warning">
+                    <div class="callout-icon">⚠️</div>
+                    <div class="callout-content">
+                        <h4>Aviso de seguridad</h4>
+                        <p>Este manual NUNCA abre sockets ni lanza procesos stdio. La demo «MCP Playground» simula todo con respuestas mockeadas. Los ejemplos de transporte stdio explican los riesgos (no exponer servidores stdio a internet).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: ARQUITECTURA ================= -->
+            <section id="arquitectura" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Capítulo 01</span>
+                    <h1 class="section-title">Arquitectura MCP</h1>
+                    <p class="section-description">
+                        Hosts, clients, servers; JSON-RPC 2.0; roles y responsabilidades.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>1. Roles en MCP</h2>
+                    <p>Un sistema MCP consta de:</p>
+                    <ul>
+                        <li><strong>Host</strong>: proceso que inicia y gestiona el ciclo de vida del servidor.</li>
+                        <li><strong>Client</strong>: proceso que consume un servidor MCP.</li>
+                        <li><strong>Server</strong>: proceso que implementa herramientas (tools) y recursos (resources).</li>
+                    </ul>
+
+                    <div class="mcp-flow">
+                        <div class="mcp-step">
+                            <div class="mcp-step-icon">🖥️</div>
+                            <div class="mcp-step-label">Host</div>
+                            <div class="mcp-step-desc">Inicia el servidor MCP.</div>
+                        </div>
+                        <div class="mcp-arrow">→</div>
+                        <div class="mcp-step">
+                            <div class="mcp-step-icon">🤝</div>
+                            <div class="mcp-step-label">Client</div>
+                            <div class="mcp-step-desc">Consume el servidor MCP.</div>
+                        </div>
+                        <div class="mcp-arrow">→</div>
+                        <div class="mcp-step">
+                            <div class="mcp-step-icon">🖥️</div>
+                            <div class="mcp-step-label">Server</div>
+                            <div class="mcp-step-desc">Implementa herramientas y recursos.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <h2>2. JSON-RPC 2.0</h2>
+                    <p>MCP usa JSON-RPC 2.0 para la comunicación entre hosts, clients y servers. Los mensajes tienen la siguiente estructura:</p>
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span class="code-lang">JSON-RPC 2.0</span>
+                            <button class="copy-btn">📋 Copiar</button>
+                        </div>
+                        <pre><code>{
+    "jsonrpc": "2.0",
+    "method": "tools/list",
+    "params": {
+        "filter": {
+            "type": "function"
+        }
+    },
+    "id": 1
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="completion-box">
+                    <span>¿Comprendes los roles en MCP y la estructura de JSON-RPC 2.0?</span>
+                    <button class="completion-btn" data-section="arquitectura">Marcar como Completado</button>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: TRANSPORTE ================= -->
+            <section id="transporte" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Capítulo 02</span>
+                    <h1 class="section-title">Transporte</h1>
+                    <p class="section-description">
+                        stdio, SSE (HTTP+POST deprecated), Streamable HTTP; cuándo usar cada uno.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>1. Tipos de Transporte</h2>
+                    <p>MCP soporta tres tipos de transporte:</p>
+                    <ul>
+                        <li><strong>stdio</strong>: Comunicación a través de stdin/stdout (útil para scripts y procesos locales).</li>
+                        <li><strong>SSE</strong>: Server-Sent Events (para streaming unidireccional).</li>
+                        <li><strong>Streamable HTTP</strong>: HTTP con cuerpo streamable (para request/response).</li>
+                    </ul>
+                </div>
+
+                <div class="content-block">
+                    <h2>2. Cuándo Usar Cada Transporte</h2>
+                    <ul>
+                        <li><strong>stdio</strong>: Ideal para integración con scripts y herramientas de línea de comandos. <strong>Riesgo</strong>: No exponer servidores stdio a internet.</li>
+                        <li><strong>SSE</strong>: Perfecto para streaming de datos desde el servidor al cliente.</li>
+                        <li><strong>Streamable HTTP</strong>: Usado para request/response tradicionales.</li>
+                    </ul>
+                </div>
+
+                <div class="completion-box">
+                    <span>¿Entiendes los tipos de transporte y cuándo usarlos?</span>
+                    <button class="completion-btn" data-section="transporte">Marcar como Completado</button>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: CICLO DE VIDA ================= -->
+            <section id="ciclo-vida" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Capítulo 03</span>
+                    <h1 class="section-title">Ciclo de Vida</h1>
+                    <p class="section-description">
+                        initialize → initialized → operation (request/response, notif., sampling) → exit.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>1. Fases del Ciclo de Vida</h2>
+                    <p>El ciclo de vida de un servidor MCP consta de cuatro fases:</p>
+                    <ul>
+                        <li><strong>initialize</strong>: Inicialización del servidor.</li>
+                        <li><strong>initialized</strong>: Servidor listo para recibir solicitudes.</li>
+                        <li><strong>operation</strong>: Procesamiento de solicitudes (request/response, notif., sampling).</li>
+                        <li><strong>exit</strong>: Finalización del servidor.</li>
+                    </ul>
+                </div>
+
+                <div class="content-block">
+                    <h2>2. Diagrama del Ciclo de Vida</h2>
+                    <div class="mcp-flow">
+                        <div class="mcp-step">
+                            <div class="mcp-step-icon">🔧</div>
+                            <div class="mcp-step-label">initialize</div>
+                            <div class="mcp-step-desc">Inicialización del servidor.</div>
+                        </div>
+                        <div class="mcp-arrow">→</div>
+                        <div class="mcp-step">
+                            <div class="mcp-step-icon">✅</div>
+                            <div class="mcp-step-label">initialized</div>
+                            <div class="mcp-step-desc">Servidor listo.</div>
+                        </div>
+                        <div class="mcp-arrow">→</div>
+                        <div class="mcp-step">
+                            <div class="mcp-step-icon">🔄</div>
+                            <div class="mcp-step-label">operation</div>
+                            <div class="mcp-step-desc">Procesamiento de solicitudes.</div>
+                        </div>
+                        <div class="mcp-arrow">→</div>
+                        <div class="mcp-step">
+                            <div class="mcp-step-icon">🚪</div>
+                            <div class="mcp-step-label">exit</div>
+                            <div class="mcp-step-desc">Finalización del servidor.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="completion-box">
+                    <span>¿Comprendes las fases del ciclo de vida de un servidor MCP?</span>
+                    <button class="completion-btn" data-section="ciclo-vida">Marcar como Completado</button>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: PRIMITIVOS ================= -->
+            <section id="primitivos" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Capítulo 04</span>
+                    <h1 class="section-title">Tools, Resources & Prompts</h1>
+                    <p class="section-description">
+                        Esquemas, ejemplos JSON-RPC de list/call/get.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>1. Tools</h2>
+                    <p>Las herramientas (tools) son funciones que un servidor MCP puede exponer a los clientes. Ejemplo de solicitud para listar herramientas:</p>
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span class="code-lang">JSON-RPC 2.0</span>
+                            <button class="copy-btn">📋 Copiar</button>
+                        </div>
+                        <pre><code>{
+    "jsonrpc": "2.0",
+    "method": "tools/list",
+    "params": {
+        "filter": {
+            "type": "function"
+        }
+    },
+    "id": 1
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <h2>2. Resources</h2>
+                    <p>Los recursos (resources) son datos que un servidor MCP puede exponer a los clientes. Ejemplo de solicitud para listar recursos:</p>
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span class="code-lang">JSON-RPC 2.0</span>
+                            <button class="copy-btn">📋 Copiar</button>
+                        </div>
+                        <pre><code>{
+    "jsonrpc": "2.0",
+    "method": "resources/list",
+    "params": {
+        "filter": {
+            "type": "dataset"
+        }
+    },
+    "id": 1
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <h2>3. Prompts</h2>
+                    <p>Los prompts son plantillas que un servidor MCP puede exponer a los clientes. Ejemplo de solicitud para obtener un prompt:</p>
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span class="code-lang">JSON-RPC 2.0</span>
+                            <button class="copy-btn">📋 Copiar</button>
+                        </div>
+                        <pre><code>{
+    "jsonrpc": "2.0",
+    "method": "prompts/get",
+    "params": {
+        "name": "default"
+    },
+    "id": 1
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="completion-box">
+                    <span>¿Entiendes los primitivos de MCP (tools, resources, prompts) y sus esquemas JSON-RPC?</span>
+                    <button class="completion-btn" data-section="primitivos">Marcar como Completado</button>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: SERVIDOR ================= -->
+            <section id="servidor" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Capítulo 05</span>
+                    <h1 class="section-title">Construir un Servidor MCP</h1>
+                    <p class="section-description">
+                        Estructura mínima (pseudocódigo Multi-SDK), registro de tools.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>1. Estructura Mínima de un Servidor MCP</h2>
+                    <p>Un servidor MCP mínimo debe implementar las siguientes funciones:</p>
+                    <ul>
+                        <li><strong>initialize</strong>: Inicialización del servidor.</li>
+                        <li><strong>tools/list</strong>: Listar herramientas disponibles.</li>
+                        <li><strong>tools/call</strong>: Invocar una herramienta.</li>
+                        <li><strong>exit</strong>: Finalización del servidor.</li>
+                    </ul>
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span class="code-lang">Pseudocódigo Multi-SDK</span>
+                            <button class="copy-btn">📋 Copiar</button>
+                        </div>
+                        <pre><code>// Inicialización del servidor
+function initialize() {
+    // Configuración inicial
+    registerTools();
+}
+
+// Registro de herramientas
+function registerTools() {
+    tools.register({
+        name: "ejemplo",
+        description: "Herramienta de ejemplo",
+        parameters: {
+            type: "object",
+            properties: {
+                input: { type: "string" }
+            }
+        }
+    });
+}
+
+// Listar herramientas
+function toolsList(params) {
+    return tools.list(params.filter);
+}
+
+// Invocar una herramienta
+function toolsCall(params) {
+    return tools.call(params.name, params.arguments);
+}
+
+// Finalización del servidor
+function exit() {
+    // Limpieza
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="completion-box">
+                    <span>¿Entiendes la estructura mínima de un servidor MCP?</span>
+                    <button class="completion-btn" data-section="servidor">Marcar como Completado</button>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: CLIENTE ================= -->
+            <section id="cliente" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Capítulo 06</span>
+                    <h1 class="section-title">Consumir un Servidor MCP</h1>
+                    <p class="section-description">
+                        Conexión desde un cliente, descubrimiento de capabilities.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>1. Conexión desde un Cliente</h2>
+                    <p>Un cliente MCP debe implementar las siguientes funciones:</p>
+                    <ul>
+                        <li><strong>connect</strong>: Conexión al servidor MCP.</li>
+                        <li><strong>discover</strong>: Descubrimiento de capabilities del servidor.</li>
+                        <li><strong>call</strong>: Invocación de herramientas en el servidor.</li>
+                    </ul>
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span class="code-lang">Pseudocódigo Multi-SDK</span>
+                            <button class="copy-btn">📋 Copiar</button>
+                        </div>
+                        <pre><code>// Conexión al servidor MCP
+function connect(serverUrl) {
+    // Configuración de la conexión
+    return new Client(serverUrl);
+}
+
+// Descubrimiento de capabilities
+function discover(client) {
+    return client.discover();
+}
+
+// Invocación de herramientas
+function call(client, toolName, arguments) {
+    return client.call(toolName, arguments);
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="completion-box">
+                    <span>¿Entiendes cómo consumir un servidor MCP desde un cliente?</span>
+                    <button class="completion-btn" data-section="cliente">Marcar como Completado</button>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: DEMO ================= -->
+            <section id="demo" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Demo Interactiva</span>
+                    <h1 class="section-title">MCP Playground</h1>
+                    <p class="section-description">
+                        Simulación mock de `tools/list` + `tools/call` con respuesta tipada.
+                    </p>
+                </div>
+
+                <div class="wizard-container">
+                    <!-- Step Indicator -->
+                    <div class="wizard-step-indicator">
+                        <div class="step-dot active">1</div>
+                        <div class="step-dot">2</div>
+                        <div class="step-dot">3</div>
+                    </div>
+
+                    <!-- Step 1: Listar Herramientas -->
+                    <div class="wizard-step active" data-step="1" data-wizard-key="listTools">
+                        <div class="wizard-question">1. Listar Herramientas</div>
+                        <div class="options-grid">
+                            <div class="option-card" data-value="listTools">
+                                <div class="option-title">🔧 tools/list</div>
+                                <div class="option-desc">Listar herramientas disponibles en el servidor MCP.</div>
+                            </div>
+                            <div class="option-card" data-value="callTool">
+                                <div class="option-title">🔧 tools/call</div>
+                                <div class="option-desc">Invocar una herramienta en el servidor MCP.</div>
+                            </div>
+                        </div>
+                        <div class="wizard-actions">
+                            <button class="btn btn-secondary" disabled>Anterior</button>
+                            <button class="btn btn-primary btn-next" disabled>Siguiente →</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Invocar Herramienta -->
+                    <div class="wizard-step" data-step="2" data-wizard-key="callTool">
+                        <div class="wizard-question">2. Invocar Herramienta</div>
+                        <div class="options-grid">
+                            <div class="option-card" data-value="ejemplo">
+                                <div class="option-title">🔧 ejemplo</div>
+                                <div class="option-desc">Herramienta de ejemplo con parámetro de entrada.</div>
+                            </div>
+                        </div>
+                        <div class="wizard-actions">
+                            <button class="btn btn-secondary btn-prev">Anterior</button>
+                            <button class="btn btn-primary btn-next" disabled>Siguiente →</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Respuesta -->
+                    <div class="wizard-step" data-step="3" data-wizard-key="response">
+                        <div class="wizard-question">3. Respuesta</div>
+                        <div class="options-grid">
+                            <div class="option-card" data-value="response">
+                                <div class="option-title">🔧 Respuesta</div>
+                                <div class="option-desc">Respuesta mockeada de la herramienta invocada.</div>
+                            </div>
+                        </div>
+                        <div class="wizard-actions">
+                            <button class="btn btn-secondary btn-prev">Anterior</button>
+                            <button class="btn btn-primary btn-next" disabled>Ejecutar MCP Playground 🎮</button>
+                        </div>
+                    </div>
+
+                    <!-- Result Display -->
+                    <div id="wizard-result" style="display:none;">
+                        <div class="wizard-result-card">
+                            <div class="rec-title">🎮 MCP Playground</div>
+                            <div id="rec-stack-name" style="font-size: 1.2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.8rem;"></div>
+
+                            <div class="rec-tags">
+                                <span class="rec-tag" id="rec-framework"></span>
+                                <span class="rec-tag" id="rec-styling"></span>
+                                <span class="rec-tag" id="rec-state"></span>
+                            </div>
+
+                            <div class="rec-body" id="rec-rationale"></div>
+
+                            <button id="reset-wizard-btn" class="btn btn-secondary" style="margin-top: 1rem;">🔄 Reiniciar MCP Playground</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</div>
+
+<!-- Main JS -->
+<script src="js/app.js"></script>
+</body>
+</html>
